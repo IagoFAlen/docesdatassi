@@ -1,0 +1,182 @@
+@font-face {
+  font-family: 'GeneralSans';
+  src: url('../assets/fonts/GeneralSans-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GeneralSans';
+  src: url('../assets/fonts/GeneralSans-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GeneralSans';
+  src: url('../assets/fonts/GeneralSans-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+:root {
+    /* COLORS */
+    --neutral-50: #FAFAFA;
+    --emphasis-high: #000000; 
+    
+    /* SPACING */
+        /* HEADER */
+    --header-height: 5.5rem;
+    --header-padding: 5.5rem;
+    
+    --s-hero-padding: 5.5rem;
+
+        /* BUTTON */
+    --button-padding-vertical-padding: 0.813rem;
+    --button-padding-inline-start: 1.25rem;
+    --button-padding-inline-end: 1rem;
+
+    --button-gap: .5rem;
+    --button-height: 1.625rem;
+    
+    /* FONT-SIZE */
+    --text-xs:      0.75rem;
+    --text-sm:      0.875rem;
+    --text-base:    1rem;
+    --text-lg:      1.125rem;
+    --text-xl:      1.25rem;
+    --text-2xl:     1.5rem;
+    --text-3xl:     1.875rem;
+    --text-4xl:     2rem;
+    --text-5xl:     3rem;
+    --text-6xl:     3.75rem;
+    --text-7xl:     4.5rem;
+    --text-8xl:     6rem;
+
+    /* FONT-WEIGHT */
+    --text-light: 200;
+    --text-medium: 400;
+    --text-bold: 700;
+
+    /* FONT-WEIGHT */
+    --button-font-weight: 200;
+
+    /* LINE HEIGHT */
+        /* H1 */
+    --h1-line-height: 115%;
+
+    /* BORDER RADIUS */
+    --button-border-radius: 624.938rem;
+
+    /* BORDER COLORS */
+    --button-border-color: var(--emphasis-high);
+
+    /* BACKGROUND COLORS*/
+    --header-background-color: var(--neutral-50);
+    --button-background-color: var(--neutral-50);
+
+    /* TOKENS */
+    /* BORDER */
+    --section-border-bottom: 2px solid var(--emphasis-high);
+    --button-border: 2px solid var(--button-border-color);
+
+}
+
+html, body {
+  -webkit-font-smoothing: antialiased; /* Safari/Chrome */
+  -moz-osx-font-smoothing: grayscale;  /* Firefox */
+}
+
+body {
+    font-family: 'GeneralSans', sans-serif;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: var(--header-height);
+    padding: 0 var(--header-padding);
+
+    background-color: var(--header-background-color);
+}
+
+#nav-bar {
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    place-items: center;
+    width: 100%;
+}
+
+#logo-icon {
+    grid-column: 5;
+
+}
+
+#menu-icon {
+    grid-column: 14;
+    justify-self: end;
+}
+
+section {
+    border-bottom: var(--section-border-bottom):
+}
+
+#s-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    
+    box-sizing: border-box;
+    padding: 0 var(--s-hero-padding);
+    height: calc(100vh - var(--header-height));
+}
+
+#merchan {
+    max-width: 330px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+#merchan button span {
+    font-size: var(--text-base);
+    font-weight: var(--text-medium);
+}
+
+h1 {
+    font-family: 'GeneralSans', sans-serif;
+    
+    font-size: var(--text-5xl);
+    font-weight: var(--text-bold);
+    
+    line-height: var(--h1-line-height);
+    letter-spacing: 0.045em;
+    text-align: start;
+}
+
+button {
+    all: unset;
+    cursor: pointer;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    padding-block: var(--button-padding-vertical-padding);
+    padding-inline-start: var(--button-padding-inline-start);
+    padding-inline-end: var(--button-padding-inline-end);
+    
+    border: var(--button-border);
+    border-radius: var(--button-border-radius);
+    background-color: var(--button-border);
+    
+    gap: var(--button-gap);
+    
+    height: var(--button-height);
+    
+    font-weight: var(--button-font-weight);
+}
