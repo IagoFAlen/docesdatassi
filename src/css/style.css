@@ -27,10 +27,9 @@
     /* SPACING */
         /* HEADER */
     --header-height: 5.5rem;
-    --header-padding: 5.5rem;
-    
-    --s-hero-padding: 5.5rem;
 
+    --presentation-padding: 10%;
+    
         /* BUTTON */
     --button-padding-vertical-padding: 0.813rem;
     --button-padding-inline-start: 1.25rem;
@@ -94,19 +93,12 @@ body {
 header {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 
     height: var(--header-height);
-    padding: 0 var(--header-padding);
+    padding: 0 var(--presentation-padding);
 
     background-color: var(--header-background-color);
-}
-
-#nav-bar {
-    display: grid;
-    grid-template-columns: repeat(18, 1fr);
-    place-items: center;
-    width: 100%;
 }
 
 #logo-icon {
@@ -121,20 +113,23 @@ header {
 
 section {
     border-bottom: var(--section-border-bottom):
+    position: absolute
 }
 
 #s-hero {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+    place-items: center;
     box-sizing: border-box;
-    padding: 0 var(--s-hero-padding);
+    position: relative;
+    padding: 0 var(--presentation-padding);
     height: calc(100vh - var(--header-height));
+
 }
 
 #merchan {
-    max-width: 330px;
+    grid-column: 1 / 5;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -150,7 +145,7 @@ section {
 h1 {
     font-family: 'GeneralSans', sans-serif;
     
-    font-size: var(--text-5xl);
+    font-size: var(--text-6xl);
     font-weight: var(--text-bold);
     
     line-height: var(--h1-line-height);
@@ -179,4 +174,12 @@ button {
     height: var(--button-height);
     
     font-weight: var(--button-font-weight);
+}
+
+#cake_section_1 {
+    grid-column: 8 / 12;
+
+    width: 35.125rem;
+    height: 40.6875rem;
+
 }
