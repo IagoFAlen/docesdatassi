@@ -28,8 +28,8 @@
         /* HEADER */
     --header-height: 5.5rem;
 
-    --presentation-padding: 10%;
-    
+    --presentation-padding: clamp(11rem, 5vw, 11rem); /* Mínimo 1rem, preferencial 5vw, máximo 2rem */
+
         /* BUTTON */
     --button-padding-vertical-padding: 0.813rem;
     --button-padding-inline-start: 1.25rem;
@@ -75,15 +75,20 @@
     --button-background-color: var(--neutral-50);
 
     /* TOKENS */
-    /* BORDER */
+        /* BORDER */
     --section-border-bottom: 2px solid var(--emphasis-high);
     --button-border: 2px solid var(--button-border-color);
+
+        /* BUTTON */
+    --button-hover-font: var(--neutral-50);
+    --button-hover-background: var(--emphasis-high);
 
 }
 
 html, body {
-  -webkit-font-smoothing: antialiased; /* Safari/Chrome */
-  -moz-osx-font-smoothing: grayscale;  /* Firefox */
+    font-display: swap;
+    -webkit-font-smoothing: antialiased; /* Safari/Chrome */
+    -moz-osx-font-smoothing: grayscale;  /* Firefox */
 }
 
 body {
@@ -112,19 +117,22 @@ header {
 }
 
 section {
-    border-bottom: var(--section-border-bottom):
-    position: absolute
+    border-bottom: var(--section-border-bottom);
 }
 
 #s-hero {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(.5fr, 1fr));
     gap: 1rem;
     place-items: center;
     box-sizing: border-box;
-    position: relative;
     padding: 0 var(--presentation-padding);
     height: calc(100vh - var(--header-height));
+    align-items: stretch; /* Estica os itens para ocupar a altura da linha */
+    min-height: 20rem; /* Mínimo para evitar colapso */
+    max-height: 60rem; /* Limite máximo para telas grandes */
+    align-content: center; /* Centraliza o conteúdo verticalmente */
+    grid-auto-rows: minmax(0, auto); /* Garante que as linhas se ajustem sem overflow */
 
 }
 
@@ -135,6 +143,8 @@ section {
     flex-direction: column;
     align-items: flex-start;
     gap: 1.5rem;
+    max-height: 100%; /* Limita a altura ao contêiner pai */
+    overflow: hidden; /* Evita que o conteúdo exceda */
 }
 
 #merchan button span {
@@ -174,12 +184,20 @@ button {
     height: var(--button-height);
     
     font-weight: var(--button-font-weight);
+
+    transition: background-color 0.4s;
+
+}
+
+button:hover {
+    color: var(--button-hover-font);
+    background-color: var(--button-hover-background)
 }
 
 #cake_section_1 {
     grid-column: 8 / 12;
 
-    width: 35.125rem;
-    height: 40.6875rem;
+    object-fit: cover;
+    max-height: 100%;
 
 }
