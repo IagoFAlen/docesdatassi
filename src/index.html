@@ -3,7 +3,6 @@
     <head>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Doces da Tassi</title>
@@ -14,21 +13,24 @@
     </head>
 
     <body>
-        <header>
-            <img src="./assets/svg/logo.svg" alt="Menu" id="logo-icon"/>
-            <img src="./assets/svg/header_menu_icon.svg" alt="Menu" id="menu-icon"/>   
-        </header>
-        <section id="s-hero">
-                <div id="merchan">
-                    <h1>Desde 2015 transformando momentos em bolo.</h1>
-                    <button type="button">
-                        <span>Comemore com a gente!</span>
-                        <img src="./assets/svg/whatsapp-icon.svg" alt="WhatsApp">
-                    </button>
-                </div>
-
-                <img src="./assets/image/herodt-.png" alt="Bolo decorado com flores" id="cake_section_1"/>
-        </section>
+        <div class="layout">
+            <header>
+                <img src="./assets/svg/logo.svg" alt="Menu" id="logo-icon"/>
+                <img src="./assets/svg/header_menu_icon.svg" alt="Menu" id="menu-icon"/>   
+            </header>
+            <section id="s-hero">
+                    <div id="merchan">
+                        <h1>Desde 2015 transformando momentos em bolo.</h1>
+                        <button type="button" id="merchan-button">
+                            <span>Comemore com a gente!</span>
+                            <img src="./assets/svg/whatsapp-icon.svg" alt="WhatsApp" id="whatsapp-icon" class="button-icon"/>
+                            <img src="./assets/svg/arrow_right.svg" alt="Arrow Link" id="arrow-icon" class="button-icon hidden"/>
+                        </button>
+                    </div>
+    
+                    <img src="./assets/image/herodt-.png" alt="Bolo decorado com flores" id="cake_section_1"/>
+            </section>
+        </div>
     </body>
 
     <footer>

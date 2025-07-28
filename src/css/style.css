@@ -18,23 +18,20 @@
   font-weight: 700;
   font-style: normal;
 }
-
+/* Mantém as definições existentes de :root, @font-face, etc. */
 :root {
     /* COLORS */
     --neutral-50: #FAFAFA;
     --emphasis-high: #000000; 
     
     /* SPACING */
-        /* HEADER */
     --header-height: 5.5rem;
+    --layout-padding: 5.5rem;
 
-    --presentation-padding: clamp(11rem, 5vw, 11rem); /* Mínimo 1rem, preferencial 5vw, máximo 2rem */
-
-        /* BUTTON */
-    --button-padding-vertical-padding: 0.813rem;
-    --button-padding-inline-start: 1.25rem;
-    --button-padding-inline-end: 1rem;
-
+    /* BUTTON */
+    --button-padding-vertical-padding: 1rem;
+    --button-padding-inline-start: 2rem;
+    --button-padding-inline-end: 1.5rem;
     --button-gap: .5rem;
     --button-height: 1.625rem;
     
@@ -61,7 +58,6 @@
     --button-font-weight: 200;
 
     /* LINE HEIGHT */
-        /* H1 */
     --h1-line-height: 115%;
 
     /* BORDER RADIUS */
@@ -70,23 +66,24 @@
     /* BORDER COLORS */
     --button-border-color: var(--emphasis-high);
 
-    /* BACKGROUND COLORS*/
+    /* BACKGROUND COLORS */
     --header-background-color: var(--neutral-50);
     --button-background-color: var(--neutral-50);
+    --button-background-color-hover: var(--button-border-color);
 
     /* TOKENS */
-        /* BORDER */
+    /* BORDER */
     --section-border-bottom: 2px solid var(--emphasis-high);
     --button-border: 2px solid var(--button-border-color);
 
-        /* BUTTON */
-    --button-hover-font: var(--neutral-50);
-    --button-hover-background: var(--emphasis-high);
+    --font-color-hover: var(--neutral-50);
+}
 
+.hidden {
+    display: none;
 }
 
 html, body {
-    font-display: swap;
     -webkit-font-smoothing: antialiased; /* Safari/Chrome */
     -moz-osx-font-smoothing: grayscale;  /* Firefox */
 }
@@ -95,109 +92,114 @@ body {
     font-family: 'GeneralSans', sans-serif;
 }
 
+.layout {
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    grid-template-rows: var(--header-height) auto;
+    place-items: center;
+    height: 100vh;
+}
+
+.button-icon {
+    max-width: 2rem;
+    max-height: 2rem;
+}
+
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    grid-row: 1 / 2;
+    grid-column: 1 / -1;
+    display: contents; /* Mantém o comportamento original para os filhos */
+    position: relative; /* Necessário para posicionar o pseudo-elemento */
+}
 
-    height: var(--header-height);
-    padding: 0 var(--presentation-padding);
-
-    background-color: var(--header-background-color);
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height); /* Usa a altura definida para o header */
+    background-color: var(--header-background-color); /* Aplica a cor de fundo */
+    z-index: -1; /* Coloca o fundo atrás dos filhos */
 }
 
 #logo-icon {
-    grid-column: 5;
-
+    grid-column: 3 / 7;
+    justify-self: start;
 }
 
 #menu-icon {
-    grid-column: 14;
+    grid-column: 12 / 12;
     justify-self: end;
 }
 
 section {
+    grid-row: 2 / 2;
+    display: contents;
     border-bottom: var(--section-border-bottom);
 }
 
 #s-hero {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(.5fr, 1fr));
-    gap: 1rem;
-    place-items: center;
+    display: contents;
     box-sizing: border-box;
-    padding: 0 var(--presentation-padding);
     height: calc(100vh - var(--header-height));
-    align-items: stretch; /* Estica os itens para ocupar a altura da linha */
-    min-height: 20rem; /* Mínimo para evitar colapso */
-    max-height: 60rem; /* Limite máximo para telas grandes */
-    align-content: center; /* Centraliza o conteúdo verticalmente */
-    grid-auto-rows: minmax(0, auto); /* Garante que as linhas se ajustem sem overflow */
-
 }
 
 #merchan {
-    grid-column: 1 / 5;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: flex-start;
+    grid-column: 3 / 7;
     gap: 1.5rem;
-    max-height: 100%; /* Limita a altura ao contêiner pai */
-    overflow: hidden; /* Evita que o conteúdo exceda */
 }
 
 #merchan button span {
-    font-size: var(--text-base);
+    font-size: var(--text-2xl);
     font-weight: var(--text-medium);
 }
 
+#merchan button img {
+    width: 2rem;
+    height: 2rem;
+}
+
+
 h1 {
     font-family: 'GeneralSans', sans-serif;
-    
     font-size: var(--text-6xl);
     font-weight: var(--text-bold);
-    
     line-height: var(--h1-line-height);
     letter-spacing: 0.045em;
     text-align: start;
+    max-width: 20ch;
 }
 
 button {
     all: unset;
     cursor: pointer;
-    
     display: flex;
     align-items: center;
     justify-content: center;
-    
     padding-block: var(--button-padding-vertical-padding);
     padding-inline-start: var(--button-padding-inline-start);
     padding-inline-end: var(--button-padding-inline-end);
-    
     border: var(--button-border);
     border-radius: var(--button-border-radius);
-    background-color: var(--button-border);
-    
+    background-color: var(--button-background-color);
     gap: var(--button-gap);
-    
     height: var(--button-height);
-    
     font-weight: var(--button-font-weight);
-
-    transition: background-color 0.4s;
-
+    transition: background-color .2s ease-in-out;
 }
 
 button:hover {
-    color: var(--button-hover-font);
-    background-color: var(--button-hover-background)
+    color: var(--font-color-hover);
+    background-color: var(--button-background-color-hover);
 }
 
 #cake_section_1 {
-    grid-column: 8 / 12;
-
-    object-fit: cover;
-    max-height: 100%;
-
+    object-fit: contain;
+    grid-column: 10 / 12;
+    max-height: calc(100vh - var(--header-height));
 }
